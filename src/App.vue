@@ -1,7 +1,6 @@
 <template>
   <div id="app">
     <HeaderPage />
-    <!-- Autres contenus de votre application -->
     <nav>
       <router-link to="/">Accueil</router-link> |
       <router-link to="/cocktail">Cocktails</router-link> |
@@ -11,11 +10,9 @@
     <FooterPage />
   </div>
 </template>
-
 <script>
-import HeaderPage from "./components/HeaderPage.vue";
-import FooterPage from "./components/FooterPage.vue";
-
+import HeaderPage from "@/components/HeaderPage.vue";
+import FooterPage from "@/components/FooterPage.vue";
 export default {
   components: {
     HeaderPage,
@@ -23,7 +20,6 @@ export default {
   },
 };
 </script>
-
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;

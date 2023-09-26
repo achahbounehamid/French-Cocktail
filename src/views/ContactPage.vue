@@ -1,15 +1,16 @@
 <template>
-  <div class="cocktail">
-    <p>French cocktail</p>
+  <div class="contact">
+    <p>Contact</p>
   </div>
 </template>
 <script>
 export default {
-  name: "CocktailVue",
+  name: "ContactVue",
 };
 </script>
+
 <style scoped lang="scss">
-.cocktail {
+.contact {
   height: 650px;
 }
 p {
