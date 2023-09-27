@@ -2,9 +2,7 @@
   <div id="app">
     <HeaderPage />
     <nav>
-      <router-link to="/">Accueil</router-link> |
-      <router-link to="/cocktail">Cocktails</router-link> |
-      <router-link to="/contact">Contact</router-link>
+      <router-link to="/">Accueil</router-link>
     </nav>
     <router-view />
     <FooterPage />

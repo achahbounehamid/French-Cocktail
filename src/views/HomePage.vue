@@ -1,21 +1,40 @@
 <template>
   <div class="drinks">
     <CocktailNomAlcol
-      v-for="cocktail in cocktails"
-      :key="cocktail.id"
+      v-for="(cocktail, index) in cocktails.slice(0, 8)"
+      :key="index"
       :strDrink="cocktail.strDrink"
       :strDrinkThumb="cocktail.strDrinkThumb"
       :idDrink="cocktail.idDrink"
     />
   </div>
+  <div class="active">
+    <Carousel :items-to-show="3" :wrap-around="true">
+      <Slide v-for="(cocktail, index) in cocktails.slice(0, 8)" :key="index">
+        <div class="carousel__item">
+          <img :src="cocktail.strDrinkThumb" :alt="cocktail.strDrink" />
+        </div>
+      </Slide>
+      <template #addons>
+        <Navigation />
+      </template>
+    </Carousel>
+  </div>
 </template>
 <script>
 import CocktailNomAlcol from "@/components/CocktailNomAlcol.vue";
 import { getListNonAlcool } from "@/services/ApiCocktailDB.js";
-
+import { defineComponent } from "vue";
+import { Carousel, Navigation, Slide } from "vue3-carousel";
+import "vue3-carousel/dist/carousel.css";
 export default {
   name: "HomePage",
-  components: { CocktailNomAlcol },
+  components: defineComponent({
+    CocktailNomAlcol,
+    Carousel,
+    Slide,
+    Navigation,
+  }),
   data() {
     return {
       cocktails: [],
@@ -39,7 +58,7 @@ export default {
 </script>
 <style scoped lang="scss">
 .home {
-  height: 650px;
+  height: px;
 }
 p {
   color: green;
@@ -51,8 +70,11 @@ p {
   display: flex;
   flex-wrap: wrap;
 }
-.slide-carousel {
-  width: 100%;
-  height: 500px;
+.active {
+  margin-bottom: 50px;
+}
+.carousel__item {
+  width: 200px;
+  height: 200px;
 }
 </style>

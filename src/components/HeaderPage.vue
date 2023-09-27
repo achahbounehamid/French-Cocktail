@@ -4,8 +4,20 @@
       <img src="../assets/logo.png" alt="logo" />
     </div>
     <div class="search-container">
-      <input type="text" placeholder="Chercher votre cocktail..." />
-      <button type="submit">Rechercher</button>
+      <input
+        v-model="searchTerm"
+        type="text"
+        placeholder="Chercher votre cocktail..."
+      />
+      <button @click="performSearch" type="submit">Rechercher</button>
+      <ul>
+        <li v-for="cocktail in cocktails" :key="cocktail.idDrink">
+          {{ cocktail.strDrink }}
+        </li>
+      </ul>
+      <router-link
+        :to="{ name: 'browseCocktailA', params: { idDrink: idDrink } }"
+      ></router-link>
     </div>
     <nav>
       <ul class="menu">
