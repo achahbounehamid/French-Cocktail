@@ -2,7 +2,7 @@ import { createRouter, createWebHashHistory } from "vue-router";
 // import HomeView from "../views/HomeView.vue";
 import HomePage from "../views/HomePage.vue";
 import CocktailViews from "../views/CocktailViews.vue";
-
+import CocktailsByName from "../views/CocktailsNameViews.vue";
 const routes = [
   {
     path: "/",
@@ -15,9 +15,9 @@ const routes = [
     component: CocktailViews,
   },
   {
-    path: "/cocktailA/:idDrink",
-    name: "browseCocktailsA",
-    component: BrowseCocktails,
+    path: "/cocktailByName/:strDrink",
+    name: "searchCocktailName",
+    component: CocktailsByName,
   },
 ];
 

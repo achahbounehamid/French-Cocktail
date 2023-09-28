@@ -6,18 +6,15 @@
     <div class="search-container">
       <input
         v-model="searchTerm"
-        type="text"
+        type="search"
         placeholder="Chercher votre cocktail..."
       />
       <button @click="performSearch" type="submit">Rechercher</button>
-      <ul>
-        <li v-for="cocktail in cocktails" :key="cocktail.idDrink">
-          {{ cocktail.strDrink }}
-        </li>
-      </ul>
+      <SearchCocktails :cocktails="cocktails" />
       <router-link
-        :to="{ name: 'browseCocktailA', params: { idDrink: idDrink } }"
-      ></router-link>
+        :to="{ name: 'searchCocktailName', params: { idDrink: idDrink } }"
+        >Recherche cocktails Name</router-link
+      >
     </div>
     <nav>
       <ul class="menu">
@@ -28,8 +25,15 @@
   </header>
 </template>
 <script>
+import SearchCocktails from "./SearchCocktails.vue";
 export default {
   name: "HeaderPage.vue",
+  data() {
+    return {
+      searchTerm: "",
+    };
+  },
+  props: ["cocktails"],
 };
 </script>
 
