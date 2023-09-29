@@ -8,9 +8,7 @@ function getOneCocktailNonAlcool(idDrink) {
     "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + idDrink
   );
 }
-function searchCocktailsByName(strDrink) {
-  return fetch(
-    "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=" + strDrink
-  );
+function searchCocktailsByName() {
+  return fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a");
 }
 export { getListNonAlcool, getOneCocktailNonAlcool, searchCocktailsByName };

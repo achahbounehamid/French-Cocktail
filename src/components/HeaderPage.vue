@@ -3,19 +3,7 @@
     <div class="logo">
       <img src="../assets/logo.png" alt="logo" />
     </div>
-    <div class="search-container">
-      <input
-        v-model="searchTerm"
-        type="search"
-        placeholder="Chercher votre cocktail..."
-      />
-      <button @click="performSearch" type="submit">Rechercher</button>
-      <SearchCocktails :cocktails="cocktails" />
-      <router-link
-        :to="{ name: 'searchCocktailName', params: { idDrink: idDrink } }"
-        >Recherche cocktails Name</router-link
-      >
-    </div>
+    <SearchCocktails v-model="searchTerm" />
     <nav>
       <ul class="menu">
         <li><a href="/home">Menu</a></li>
@@ -25,15 +13,20 @@
   </header>
 </template>
 <script>
-import SearchCocktails from "./SearchCocktails.vue";
+import SearchCocktails from "@/components/SearchCocktails.vue";
 export default {
   name: "HeaderPage.vue",
+  components: {
+    SearchCocktails,
+  },
   data() {
     return {
-      searchTerm: "",
+      searchQuery: "",
+      cocktails: [],
     };
   },
   props: ["cocktails"],
+  // methods: {},
 };
 </script>
 
@@ -44,6 +37,7 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+
   header {
     background-color: #9fbc79;
     color: white;
@@ -51,10 +45,12 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
     div.logo img {
       height: 150px;
       width: 150px;
     }
+
     .search-container {
       display: flex;
       margin: 20px;
@@ -76,32 +72,38 @@ export default {
       color: white;
       cursor: pointer;
     }
+
     nav {
       padding: 30px;
 
       a {
         font-weight: bold;
         color: #2c3e50;
+
         &.router-link-exact-active {
           color: #42b983;
         }
       }
     }
   }
+
   nav ul {
     list-style: none;
     display: flex;
     gap: 20px;
   }
+
   nav a {
     text-decoration: none;
     color: #42b983;
   }
+
   .menu img {
     cursor: pointer;
     width: 50px;
     height: 50px;
   }
+
   .menu a {
     margin: 20px;
   }
