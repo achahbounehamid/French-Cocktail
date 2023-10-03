@@ -4,9 +4,9 @@
       <img :src="strDrinkThumb" alt="strDrink" />
     </figure>
     <h3>{{ strDrink }}</h3>
-    <router-link :to="{ name: 'cocktailDetails', params: { idDrink: idDrink } }"
-      >En Savoir Plus</router-link
-    >
+    <router-link :to="`/cocktail/${Number(idDrink)}`">{{
+      strDrink
+    }}</router-link>
   </div>
 </template>
 <script>

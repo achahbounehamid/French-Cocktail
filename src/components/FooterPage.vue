@@ -19,7 +19,8 @@ export default {
 .footer {
   background-color: #9fbc79;
   padding: 10px;
-
+  display: flex;
+  justify-content: space-between;
   img {
     width: 50px;
     height: 50px;
@@ -29,9 +30,8 @@ export default {
     color: black;
   }
 }
-.footer p,
 .reseaux-sociaux {
   display: flex;
-  // background-color: red;
+ 
 }
 </style>

@@ -3,33 +3,38 @@
     <div class="logo">
       <img src="../assets/logo.png" alt="logo" />
     </div>
-    <SearchCocktails v-model="searchTerm" />
-    <nav>
-      <ul class="menu">
-        <li><a href="/home">Menu</a></li>
-        <img src="../assets/menu.png" alt="menu-burger" />
+    <div classe="titre">
+      <h1>Fren-Cocktail</h1>
+    </div>
+    <div class="menu-icon" @click="toggleMenu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+    <div class="menu">
+      <ul>
+        <li><a href="#">Accueil</a></li>
+        <li><a href="#">Cocktails par Ingrédient</a></li>
+        <li><a href="#">Catalogue de Cocktails</a></li>
       </ul>
-    </nav>
+    </div>
   </header>
 </template>
 <script>
-import SearchCocktails from "@/components/SearchCocktails.vue";
 export default {
-  name: "HeaderPage.vue",
-  components: {
-    SearchCocktails,
+  name: "HeaderPage",
+  components: {},
+  data() {},
+  methods: {
+    toggleMenu() {
+      var menu = document.querySelector(".menu");
+      var menuIcon = document.querySelector(".menu-icon");
+      menu.classList.toggle("open");
+      menuIcon.classList.toggle("open");
+    },
   },
-  data() {
-    return {
-      searchQuery: "",
-      cocktails: [],
-    };
-  },
-  props: ["cocktails"],
-  // methods: {},
 };
 </script>
-
 <style scoped lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -51,61 +56,59 @@ export default {
       width: 150px;
     }
 
-    .search-container {
+    nav ul {
+      list-style: none;
       display: flex;
-      margin: 20px;
-      width: 50%;
+      gap: 20px;
     }
 
-    input[type="text"] {
-      width: 70%;
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 5px 0 0 5px;
-    }
-
-    button {
-      padding: 10px 15px;
-      background-color: #007bff;
-      border: none;
-      border-radius: 0 5px 5px 0;
-      color: white;
-      cursor: pointer;
-    }
-
-    nav {
-      padding: 30px;
-
-      a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-          color: #42b983;
-        }
-      }
+    nav a {
+      text-decoration: none;
+      color: #42b983;
     }
   }
 
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 20px;
+  .menu {
+    display: none;
   }
 
-  nav a {
-    text-decoration: none;
-    color: #42b983;
-  }
-
-  .menu img {
+  .menu-icon {
     cursor: pointer;
-    width: 50px;
-    height: 50px;
+    margin-right: 20px;
+  }
+
+  .menu-icon div {
+    width: 40px;
+    height: 5px;
+    background-color: #333;
+    margin: 6px 0;
+    transition: 0.4s;
+  }
+
+  .menu-icon.open div:nth-child(1) {
+    transform: rotate(-45deg) translate(-5px, 6px);
+  }
+
+  .menu-icon.open div:nth-child(2) {
+    opacity: 0;
+  }
+
+  .menu-icon.open div:nth-child(3) {
+    transform: rotate(45deg) translate(-5px, -6px);
+  }
+
+  .menu ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .menu li {
+    margin: 10px 0;
   }
 
   .menu a {
-    margin: 20px;
+    text-decoration: none;
+    font-size: 18px;
   }
 }
 </style>

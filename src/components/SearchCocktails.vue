@@ -1,14 +1,41 @@
 <template>
-  <div class="search">
+  <div class="search-bar">
     <input
-      class="search-field"
+      v-model="searchText"
       type="text"
-      v-model="searchQuery"
-      name="searchQuery"
+      name="search"
+      class="SearchBar-input"
+      placeholder="Votre recherche ici....."
     />
-    <button type="submit" class="search-btn" @click="performSearch">
+    <button @click.prevent="performSearch" class="SearchBar-button">
       <i class="fas fa-search search-icon"></i>Recherche
     </button>
+  </div>
+
+  <div class="responseSearch" v-if="searchResults.length > 0">
+    <ul class="detailsSearch">
+      <li
+        class="cokctailList"
+        v-for="cocktail in searchResults"
+        :key="cocktail.idDrink"
+      >
+        <router-link
+          :to="{
+            name: 'cocktailDetails',
+            params: { idDrink: cocktail.idDrink },
+          }"
+        >
+          <figure>
+            <img
+              class="searchImg"
+              :src="cocktail.strDrinkThumb"
+              :alt="cocktail.strDrink"
+            />
+            <figcaption class="titleCock">{{ cocktail.strDrink }}</figcaption>
+          </figure>
+        </router-link>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -16,20 +43,29 @@
 import { searchCocktailsByName } from "@/services/ApiCocktailDB.js";
 
 export default {
-  name: "CocktailNameViews",
+  name: "SearchCocktails",
+  components: {},
   data() {
     return {
-      searchQuery: "",
+      searchText: "",
+      searchResults: [],
       cocktails: [],
     };
   },
+
   methods: {
     async performSearch() {
       try {
-        const response = await searchCocktailsByName(this.searchQuery);
-        this.cocktails = response.data.cocktails || [];
+        const response = await searchCocktailsByName(this.searchText);
+        if (!response.ok) {
+          throw new Error("Erreur de recherche");
+        }
+        const data = await response.json();
+        const searchResults = data.drinks || [];
+        // Émettez l'événement personnalisé avec les résultats
+        this.$emit("search-results-updated", searchResults);
       } catch (error) {
-        console.error("Erreur lors de la recherche de cocktails :", error);
+        console.error("Erreur lors de la recherche de cocktails:", error);
       }
     },
   },
@@ -39,58 +75,18 @@ export default {
 .search {
   display: flex;
 }
-
-.search-bar {
-  background-color: white;
-  border-radius: 10rem;
-  display: flex;
-  margin: 1.5rem;
-  max-width: 25rem;
+.search-bar input {
+  border: 1px solid #ccc;
+  padding: 5px;
+  border-radius: 4px;
+  font-size: 16px;
 }
 
-.search-field {
+.search-bar button {
+  background-color: #007bff;
+  color: #fff;
   border: none;
-  border-radius: 10rem;
-  color: #66a6ff;
-  font-size: 1.2rem;
-  outline: none;
-  padding: 0.5rem 1.5rem;
-  width: 100%;
-}
-
-::placeholder {
-  color: #cce2ff;
-}
-
-:-ms-input-placeholder {
-  color: #cce2ff;
-}
-
-::-ms-input-placeholder {
-  color: #cce2ff;
-}
-
-.search-btn {
-  background-image: linear-gradient(to right, #89f7fe, #66a6ff);
-  border-width: 0;
-  border-radius: 10rem;
-  color: white;
-  display: flex;
-  align-items: center;
-  font-size: 1rem;
-  font-weight: 400;
-  justify-content: space-around;
-  outline-width: 0;
-  padding: 0.5rem 2rem;
-  transition: all 0.2s ease;
-}
-
-.search-btn:hover {
-  cursor: pointer;
-  transform: scale(1.08);
-}
-
-.search-icon {
-  margin-right: 1rem;
+  padding: 10px 20px;
+  border-radius: 4px;
 }
 </style>

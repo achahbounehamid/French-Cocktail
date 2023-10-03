@@ -8,7 +8,18 @@ function getOneCocktailNonAlcool(idDrink) {
     "https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=" + idDrink
   );
 }
-function searchCocktailsByName() {
-  return fetch("https://www.thecocktaildb.com/api/json/v1/1/search.php?s=a");
+function searchCocktailsByName(searchText) {
+  const apiUrl = `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchText}`;
+  return fetch(apiUrl);
 }
-export { getListNonAlcool, getOneCocktailNonAlcool, searchCocktailsByName };
+function fetchCocktailsByIngredient(ingredient) {
+  const apiUrlIngredient = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  return fetch(apiUrlIngredient);
+}
+
+export {
+  getListNonAlcool,
+  getOneCocktailNonAlcool,
+  searchCocktailsByName,
+  fetchCocktailsByIngredient,
+};
