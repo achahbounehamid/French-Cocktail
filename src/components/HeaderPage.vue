@@ -1,11 +1,5 @@
 <template>
   <header>
-    <div class="logo">
-      <img src="../assets/logo.png" alt="logo" />
-    </div>
-    <div classe="titre">
-      <h1>Fren-Cocktail</h1>
-    </div>
     <div class="menu-icon" @click="toggleMenu">
       <div></div>
       <div></div>
@@ -14,9 +8,31 @@
     <div class="menu">
       <ul>
         <li><a href="#">Accueil</a></li>
-        <li><a href="#">Cocktails par Ingrédient</a></li>
-        <li><a href="#">Catalogue de Cocktails</a></li>
+        <li>
+          <router-link
+            :to="{
+              name: 'cocktailListIngredient',
+              // params: { ingredient: 'VotreIngredient' },
+            }"
+            >Cocktails par Ingrédient</router-link
+          >
+        </li>
+        <li>
+          <!-- <router-link
+            :to="{
+              name: 'cocktailCategory',
+              // params: { ingredient: 'VotreIngredient' },
+            }"
+            >Cocktails par Catégorie</router-link
+          > -->
+        </li>
       </ul>
+    </div>
+    <div class="titre">
+      <h1>Fren-Cocktail</h1>
+    </div>
+    <div class="logo">
+      <img src="../assets/logo.png" alt="logo" />
     </div>
   </header>
 </template>
@@ -48,7 +64,7 @@ export default {
     color: white;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
 
     div.logo img {
@@ -83,6 +99,10 @@ export default {
     background-color: #333;
     margin: 6px 0;
     transition: 0.4s;
+  }
+
+  .menu.open {
+    display: block;
   }
 
   .menu-icon.open div:nth-child(1) {

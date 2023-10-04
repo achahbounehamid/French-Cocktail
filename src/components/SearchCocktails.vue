@@ -75,6 +75,7 @@ export default {
 .search {
   display: flex;
 }
+
 .search-bar input {
   border: 1px solid #ccc;
   padding: 5px;

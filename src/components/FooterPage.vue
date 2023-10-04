@@ -32,6 +32,5 @@ export default {
 }
 .reseaux-sociaux {
   display: flex;
- 
 }
 </style>

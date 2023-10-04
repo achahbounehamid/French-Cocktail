@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div>
     <h1>Cocktails avec {{ ingredient }}</h1>
     <ul>
@@ -40,4 +40,4 @@ export default {
     this.fetchCocktailsByIngredient();
   },
 };
-</script> -->
+</script>
