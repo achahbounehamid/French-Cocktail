@@ -14,15 +14,16 @@
     </ul>
   </div>
 </template>
+
 <script>
-import fetchCocktailsByIngredient from "@/services/ApiCocktailDB.js";
+import { fetchCocktailsByIngredient } from "@/services/ApiCocktailDB.js";
+
 export default {
-  name: "cocktailIngredient",
+  name: "CocktailIngredientViews",
   data() {
     return {
-      ingredient: "", // L'ingrédient que vous souhaitez rechercher
-      cocktails: [], // Pour stocker les cocktails trouvés
-      ingredient: this.$route.params.ingredient,
+      ingredient: "",
+      cocktails: [],
     };
   },
   methods: {
@@ -32,12 +33,14 @@ export default {
         const data = await response.json();
         this.cocktails = data.drinks;
       } catch (error) {
-        console.error("Erreur lors de la récupération des cocktails:", error);
+        console.error("Erreur lors de la récupération des cocktails :", error);
       }
     },
   },
   mounted() {
+    this.ingredient = this.$route.params.ingredient;
     this.fetchCocktailsByIngredient();
   },
 };
 </script>
+<style scoped lang="scss"></style>

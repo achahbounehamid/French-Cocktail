@@ -3,7 +3,8 @@ import { createRouter, createWebHashHistory } from "vue-router";
 import HomePage from "../views/HomePage.vue";
 import CocktailViews from "../views/CocktailViews.vue";
 import CocktailListIngredients from "../views/CocktailListIngredients.vue";
-// import CocktailCategoryViews from "../views/c=CocktailCategoryViews.vue";
+import CocktailCategoryViews from "../views/CocktailCategoryViews.vue";
+import CocktailByingredientViews from "../views/CocktailByingredientViews.vue";
 
 const routes = [
   {
@@ -23,12 +24,17 @@ const routes = [
     component: CocktailListIngredients,
     props: true,
   },
-  //   {
-  //     path: "/category/",
-  //     name: "cocktailCategory",
-  //     component: CocktailCategoryViews,
+  {
+    path: "/ingredientByCocktail/:strIngredient1",
+    name: "ingredientByCocktail",
+    component: CocktailByingredientViews,
+  },
 
-  //   },
+  {
+    path: "/category/",
+    name: "cocktailCategory",
+    component: CocktailCategoryViews,
+  },
 ];
 const router = createRouter({
   history: createWebHashHistory(),

@@ -18,13 +18,13 @@
           >
         </li>
         <li>
-          <!-- <router-link
+          <router-link
             :to="{
               name: 'cocktailCategory',
               // params: { ingredient: 'VotreIngredient' },
             }"
             >Cocktails par Catégorie</router-link
-          > -->
+          >
         </li>
       </ul>
     </div>

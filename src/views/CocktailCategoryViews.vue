@@ -1,5 +1,16 @@
-<!-- <template>
+<template>
   <div>
-    <h1>Cocktails par catégorie</h1>
+    <h1>Vue CocktailCategoryViews</h1>
+    <CocktailCategory />
   </div>
-</template> -->
+</template>
+
+<script>
+import CocktailCategory from "@/components/CocktailCategory.vue";
+
+export default {
+  components: {
+    CocktailCategory,
+  },
+};
+</script>

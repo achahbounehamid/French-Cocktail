@@ -20,9 +20,14 @@ function fetchCocktailsByIngredient(ingredient) {
 function getIngredient() {
   return fetch`https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list`;
 }
-// function getCategory() {
-//   return fetch`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
-// }
+function getCategory() {
+  return fetch`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
+}
+function getCocktailWithIngredient(strIngredient1) {
+  return fetch(
+    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + strIngredient1
+  );
+}
 
 export {
   getListNonAlcool,
@@ -30,5 +35,6 @@ export {
   searchCocktailsByName,
   fetchCocktailsByIngredient,
   getIngredient,
-  // getCategory
+  getCategory,
+  getCocktailWithIngredient,
 };

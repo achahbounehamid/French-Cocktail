@@ -1,18 +1,17 @@
-<!-- <template>
+<template>
   <div>
     <h1>Liste des Cocktails par Ingrédient</h1>
     <ul>
       <li
         v-for="listIngredient in listIngredients"
         :key="listIngredient.strIngredient2"
-        @click="fetchCocktailsByIngredient(listIngredient)"
+        @click="fetchCocktailsByIngredient(listIngredient.strIngredient2)"
       >
-        <img :src="listIngredient.strIngredientThumb" alt="Ingredient" />
         {{ listIngredient.strIngredient2 }}
       </li>
     </ul>
     <div v-if="selectedIngredient">
-      <h2>Cocktails contenant {{ selectedIngredient.strIngredient2 }}</h2>
+      <h2>Cocktails contenant {{ selectedIngredient }}</h2>
       <ul>
         <li v-for="cocktail in cocktails" :key="cocktail.idDrink">
           {{ cocktail.strDrink }}
@@ -23,12 +22,15 @@
 </template>
 
 <script>
-import { getIngredient } from "@/services/ApiCocktailDB.js"; // Assurez-vous d'importer correctement votre fonction
+import {
+  getIngredient,
+  fetchCocktailsByIngredient, // Mise à jour de l'import
+} from "@/services/ApiCocktailDB.js";
 
 export default {
   data() {
     return {
-      listIngredients: [], // Initialisez un tableau pour stocker les ingrédients
+      listIngredients: [],
       selectedIngredient: null,
       cocktails: [],
     };
@@ -36,13 +38,12 @@ export default {
   methods: {
     async fetchIngredients() {
       try {
-        const response = await getIngredient(); // Faites la requête à l'API
-        const data = await response.json(); // Convertissez la réponse en JSON
+        const response = await getIngredient();
+        const data = await response.json();
 
         if (data && data.drinks) {
           this.listIngredients = data.drinks.map((ingredient) => ({
             strIngredient2: ingredient.strIngredient1,
-            strIngredientThumb: ingredient.strIngredientThumb,
           }));
         } else {
           console.log("Aucun ingrédient trouvé.");
@@ -52,12 +53,77 @@ export default {
       }
     },
     async fetchCocktailsByIngredient(ingredient) {
-      this.selectedIngredient = ingredient;
-      // Vous pouvez implémenter cette fonction pour récupérer les cocktails en fonction de l'ingrédient sélectionné ici
+      // Mise à jour du nom de la méthode
+      try {
+        const response = await fetchCocktailsByIngredient(ingredient); // Utilisation du nom d'ingrédient
+        const data = await response.json();
+
+        if (data && data.drinks) {
+          this.cocktails = data.drinks;
+          this.selectedIngredient = ingredient;
+        } else {
+          console.log("Aucun cocktail trouvé pour cet ingrédient.");
+        }
+      } catch (error) {
+        console.error("Une erreur s'est produite :", error);
+      }
     },
   },
   mounted() {
-    this.fetchIngredients(); // Appelez la fonction pour récupérer les ingrédients lors du montage du composant
+    this.fetchIngredients();
+  },
+};
+</script>
+<style scoped lang="scss">
+div ul li {
+  list-style-type: none;
+}
+</style>
+<!-- <template>
+  <section id="ingredient" class="row-limit-size">
+    <h1>Search by ingredients</h1>
+    <div id="ContainerAllIngredient">
+      <div v-for="ingredient in ingredients" :key="ingredient.strIngredient1">
+        <div class="containerOneIngredient">
+          <router-link
+            :to="{
+              name: 'CocktailByIngredient',
+              params: { strIngredient1: ingredient.strIngredient1 },
+            }"
+            >{{ ingredient.strIngredient1 }}</router-link
+          >
+        </div>
+      </div>
+    </div>
+  </section>
+</template>
+<script>
+import { getCocktailById, getIngredient } from "@/services/ApiCocktailDB.js";
+
+export default {
+  name: "IngredientList",
+  data() {
+    return {
+      ingredients: [],
+    };
+  },
+
+  mounted() {
+    this.listIngredient();
+  },
+  methods: {
+    async listIngredient() {
+      const response = await getIngredient();
+      const data = await response.json();
+      this.ingredients = data.drinks;
+    },
+
+    async showCocktailDetails(idDrink) {
+      const response = await getCocktailById(idDrink);
+      const data = await response.json();
+      // Traitez les données du cocktail détaillé ici
+      console.log(data);
+    },
   },
 };
 </script> -->

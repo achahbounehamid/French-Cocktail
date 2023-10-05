@@ -3,14 +3,13 @@
     <h1>Liste des Cocktails par Ingrédient</h1>
     <ul>
       <li
-        v-for="Ingredient in Ingredients"
-        :key="Ingredient.strIngredient2"
-        @click="fetchCocktailsByIngredient(Ingredient.strIngredient2)"
+        v-for="ingredient in listIngredients"
+        :key="ingredient.strIngredient"
+        @click="fetchCocktailsByIngredient(ingredient.strIngredient2)"
       >
-        {{ listIngredient.strIngredient2 }}
+        {{ ingredient.strIngredient }}
       </li>
     </ul>
-    <!-- Sélection de l'ingrédient -->
     <div v-if="selectedIngredient">
       <h2>Cocktails contenant {{ selectedIngredient }}</h2>
       <ul>
@@ -21,16 +20,17 @@
     </div>
   </div>
 </template>
+
 <script>
-import searchCocktailsByIngredient from "@/services/ApiCocktailDB.js"; // Assurez-vous d'importer la fonction appropriée
+import { fetchCocktailsByIngredient } from "@/services/ApiCocktailDB.js";
 
 export default {
-  name: "cocktailListIngredient",
+  name: "CocktailListIngredients",
   data() {
     return {
-      // listIngredients: [], // Liste des ingrédients
-      selectedIngredient: "", // Ingrédient sélectionné
-      cocktails: [], // Liste des cocktails par ingrédient
+      listIngredients: [],
+      selectedIngredient: "",
+      cocktails: [],
     };
   },
   created() {
@@ -39,8 +39,7 @@ export default {
   methods: {
     async fetchListIngredients() {
       try {
-        // Remplacez cet appel par votre propre fonction pour obtenir la liste des ingrédients
-        const response = await searchCocktailsByIngredient();
+        const response = await getIngredient();
         this.listIngredients = response.data.drinks;
       } catch (error) {
         console.error(
@@ -49,9 +48,20 @@ export default {
         );
       }
     },
+    async fetchCocktailsByIngredient(ingredient) {
+      this.selectedIngredient = ingredient;
+      try {
+        const response = await fetchCocktailsByIngredient(ingredient);
+        const data = await response.json();
+        this.cocktails = data.drinks;
+      } catch (error) {
+        console.error("Erreur lors de la récupération des cocktails :", error);
+      }
+    },
   },
 };
 </script>
+
 <style lang="scss">
 .list {
   height: 100vh;
