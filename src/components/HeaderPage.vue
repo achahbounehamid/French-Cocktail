@@ -1,30 +1,24 @@
 <template>
   <header>
-    <div class="menu-icon" @click="toggleMenu">
+    <div class="menu-icon" :class="{ open: isMenuOpen }" @click="toggleMenu">
       <div></div>
       <div></div>
       <div></div>
     </div>
-    <div class="menu">
+    <div class="menu" :class="{ open: isMenuOpen }">
       <ul>
         <li><a href="#">Accueil</a></li>
         <li>
-          <router-link
-            :to="{
-              name: 'cocktailListIngredient',
-              // params: { ingredient: 'VotreIngredient' },
-            }"
-            >Cocktails par Ingrédient</router-link
-          >
+          <router-link :to="{
+            name: 'cocktailListIngredient',
+            // params: { ingredient: 'VotreIngredient' },
+          }">Cocktails par Ingrédient</router-link>
         </li>
         <li>
-          <router-link
-            :to="{
-              name: 'cocktailCategory',
-              // params: { ingredient: 'VotreIngredient' },
-            }"
-            >Cocktails par Catégorie</router-link
-          >
+          <router-link :to="{
+            name: 'cocktailCategory',
+            // params: { ingredient: 'VotreIngredient' },
+          }">Cocktails par Catégorie</router-link>
         </li>
       </ul>
     </div>
@@ -32,25 +26,28 @@
       <h1>Fren-Cocktail</h1>
     </div>
     <div class="logo">
-      <img src="../assets/logo.png" alt="logo" />
+      <img src="../assets/logoCocktail.png" alt="logo" />
     </div>
   </header>
 </template>
+
 <script>
 export default {
   name: "HeaderPage",
   components: {},
-  data() {},
+  data() {
+    return {
+      isMenuOpen: false
+    };
+  },
   methods: {
     toggleMenu() {
-      var menu = document.querySelector(".menu");
-      var menuIcon = document.querySelector(".menu-icon");
-      menu.classList.toggle("open");
-      menuIcon.classList.toggle("open");
+      this.isMenuOpen = !this.isMenuOpen;
     },
   },
 };
 </script>
+
 <style scoped lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -67,7 +64,7 @@ export default {
     justify-content: space-evenly;
     align-items: center;
 
-    div.logo img {
+    .logo img {
       height: 150px;
       width: 150px;
     }
@@ -86,35 +83,36 @@ export default {
 
   .menu {
     display: none;
+    transition: all 0.3s ease;
+
+    &.open {
+      display: block;
+    }
   }
 
   .menu-icon {
     cursor: pointer;
     margin-right: 20px;
-  }
 
-  .menu-icon div {
-    width: 40px;
-    height: 5px;
-    background-color: #333;
-    margin: 6px 0;
-    transition: 0.4s;
-  }
+    div {
+      width: 40px;
+      height: 5px;
+      background-color: #333;
+      margin: 6px 0;
+      transition: 0.4s;
+    }
 
-  .menu.open {
-    display: block;
-  }
+    &.open div:nth-child(1) {
+      transform: rotate(-45deg) translate(-5px, 6px);
+    }
 
-  .menu-icon.open div:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-  }
+    &.open div:nth-child(2) {
+      opacity: 0;
+    }
 
-  .menu-icon.open div:nth-child(2) {
-    opacity: 0;
-  }
-
-  .menu-icon.open div:nth-child(3) {
-    transform: rotate(45deg) translate(-5px, -6px);
+    &.open div:nth-child(3) {
+      transform: rotate(45deg) translate(-5px, -6px);
+    }
   }
 
   .menu ul {

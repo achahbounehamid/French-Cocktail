@@ -13,20 +13,25 @@ function searchCocktailsByName(searchText) {
   return fetch(apiUrl);
 }
 function fetchCocktailsByIngredient(ingredient) {
-  const apiUrlIngredient = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
-  return fetch(apiUrlIngredient);
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredient}`;
+  return fetch(url);
 }
 
 function getIngredient() {
   return fetch`https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list`;
 }
+function getIngredientByName(ingredientName) {
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=${ingredientName}`;
+  return fetch(url);
+}
+
 function getCategory() {
   return fetch`https://www.thecocktaildb.com/api/json/v1/1/list.php?c=list`;
 }
-function getCocktailWithIngredient(strIngredient1) {
-  return fetch(
-    "https://www.thecocktaildb.com/api/json/v1/1/filter.php?i=" + strIngredient1
-  );
+
+function getCocktailByCategory(category) {
+  const url = `https://www.thecocktaildb.com/api/json/v1/1/filter.php?c=${category}`;
+  return fetch(url);
 }
 
 export {
@@ -36,5 +41,6 @@ export {
   fetchCocktailsByIngredient,
   getIngredient,
   getCategory,
-  getCocktailWithIngredient,
+  getIngredientByName,
+  getCocktailByCategory,
 };

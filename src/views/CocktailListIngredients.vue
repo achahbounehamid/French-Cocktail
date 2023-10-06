@@ -5,7 +5,7 @@
       <li
         v-for="listIngredient in listIngredients"
         :key="listIngredient.strIngredient2"
-        @click="fetchCocktailsByIngredient(listIngredient.strIngredient2)"
+        @click="navigateToCocktailResults(listIngredient.strIngredient2)"
       >
         {{ listIngredient.strIngredient2 }}
       </li>
@@ -24,7 +24,7 @@
 <script>
 import {
   getIngredient,
-  fetchCocktailsByIngredient, // Mise à jour de l'import
+  getIngredientByName, // Mise à jour de l'import
 } from "@/services/ApiCocktailDB.js";
 
 export default {
@@ -53,9 +53,8 @@ export default {
       }
     },
     async fetchCocktailsByIngredient(ingredient) {
-      // Mise à jour du nom de la méthode
       try {
-        const response = await fetchCocktailsByIngredient(ingredient); // Utilisation du nom d'ingrédient
+        const response = await getIngredientByName(ingredient); // Utilisation de la fonction getIngredientByName
         const data = await response.json();
 
         if (data && data.drinks) {
@@ -68,62 +67,20 @@ export default {
         console.error("Une erreur s'est produite :", error);
       }
     },
+    navigateToCocktailResults(ingredient) {
+      // Utilisez la route nommée CocktailResults pour rediriger vers la page des résultats des cocktails
+      this.$router.push({ name: "CocktailResults", params: { ingredient } });
+    },
   },
   mounted() {
     this.fetchIngredients();
   },
 };
 </script>
+
 <style scoped lang="scss">
 div ul li {
   list-style-type: none;
+  // background-color: red;
 }
 </style>
-<!-- <template>
-  <section id="ingredient" class="row-limit-size">
-    <h1>Search by ingredients</h1>
-    <div id="ContainerAllIngredient">
-      <div v-for="ingredient in ingredients" :key="ingredient.strIngredient1">
-        <div class="containerOneIngredient">
-          <router-link
-            :to="{
-              name: 'CocktailByIngredient',
-              params: { strIngredient1: ingredient.strIngredient1 },
-            }"
-            >{{ ingredient.strIngredient1 }}</router-link
-          >
-        </div>
-      </div>
-    </div>
-  </section>
-</template>
-<script>
-import { getCocktailById, getIngredient } from "@/services/ApiCocktailDB.js";
-
-export default {
-  name: "IngredientList",
-  data() {
-    return {
-      ingredients: [],
-    };
-  },
-
-  mounted() {
-    this.listIngredient();
-  },
-  methods: {
-    async listIngredient() {
-      const response = await getIngredient();
-      const data = await response.json();
-      this.ingredients = data.drinks;
-    },
-
-    async showCocktailDetails(idDrink) {
-      const response = await getCocktailById(idDrink);
-      const data = await response.json();
-      // Traitez les données du cocktail détaillé ici
-      console.log(data);
-    },
-  },
-};
-</script> -->
