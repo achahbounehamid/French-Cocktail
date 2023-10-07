@@ -1,10 +1,12 @@
 <template>
   <div class="footer">
-    <p>French Cocktail</p>
+    <p>© 2023 Hamid. Tous droits réservés.</p>
     <div class="reseaux-sociaux">
-      <img src="../assets/facebook.png" alt="fb" />
-      <img src="../assets/instagram.png" alt="instagram" />
-      <img src="../assets/youtube.png" alt="youtube" />
+      <ul>
+        <li><img src="../assets/facebook.png" alt="fb" /></li>
+        <li><img src="../assets/instagram.png" alt="instagram" /></li>
+        <li><img src="../assets/youtube.png" alt="youtube" /></li>
+      </ul>
     </div>
   </div>
 </template>
@@ -17,20 +19,32 @@ export default {
 
 <style scoped lang="scss">
 .footer {
-  background-color: #9fbc79;
+  background: linear-gradient(to left, #e6b800, #7dd4e8, #31e0a9);
   padding: 10px;
   display: flex;
   justify-content: space-between;
+
   img {
     width: 50px;
     height: 50px;
   }
 
   p {
-    color: black;
+    font-size: 30px;
+    line-height: 52px;
+    text-align: center;
+    font-family: "Quicksand";
+    color: #0f0f0f;
   }
 }
+
 .reseaux-sociaux {
   display: flex;
+  align-items: center;
+}
+.reseaux-sociaux ul {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-evenly;
 }
 </style>

@@ -45,8 +45,29 @@ export default {
 </script>
 
 <style scoped lang="scss">
+h1 {
+  font-size: 1.8rem;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #31e0a9;
+}
+ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
 div ul li {
   list-style-type: none;
-  display: flex;
+}
+ul li img {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+  transition: transform 0.1s;
+}
+ul li img:hover {
+  transform: scale(1.1);
 }
 </style>

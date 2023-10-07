@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="vueCocktailIngredient">
     <h1>Cocktails avec {{ ingredient }}</h1>
     <ul>
       <li v-for="cocktail in cocktails" :key="cocktail.idDrink">
@@ -43,4 +43,8 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+div h1 {
+  background-color: red;
+}
+</style>

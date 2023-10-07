@@ -4,7 +4,7 @@
     <h3>{{ cocktail.strDrink }}</h3>
   </div>
   <p class="instructions">Instructions: {{ cocktail.strInstructions }}</p>
-  <span class="ingredient">Ingredients</span>
+  <strong><span class="ingredient">Ingredients</span></strong>
   <ul>
     <li class="ingredients" v-for="ingredient in ingredients" :key="ingredient">
       {{ ingredient }}
@@ -53,11 +53,43 @@ export default {
 </script>
 <style scoped lang="scss">
 .drinks img {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
+}
+
+h3 {
+  font-size: 2.5rem;
+  font-weight: 500;
+  margin-bottom: 0;
+}
+
+.instructions {
+  color: black;
+  font-size: 25px;
+  font-family: garamond;
+  font-weight: 300;
+}
+
+span {
+  color: rgb(10, 10, 10);
+  text-transform: uppercase;
+  font-family: futura_black;
+  font-size: 30px;
+}
+
+.ingredients {
+  text-transform: uppercase;
+  font-size: 20px;
+  line-height: inherit;
+  color: black;
 }
 
 ul {
   list-style-type: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin: 30px 0 30px 0;
 }
 </style>

@@ -9,21 +9,27 @@
       <ul>
         <li><a href="#">Accueil</a></li>
         <li>
-          <router-link :to="{
-            name: 'cocktailListIngredient',
-            // params: { ingredient: 'VotreIngredient' },
-          }">Cocktails par Ingrédient</router-link>
+          <router-link
+            :to="{
+              name: 'cocktailListIngredient',
+              // params: { ingredient: 'VotreIngredient' },
+            }"
+            >Cocktails par Ingrédient</router-link
+          >
         </li>
         <li>
-          <router-link :to="{
-            name: 'cocktailCategory',
-            // params: { ingredient: 'VotreIngredient' },
-          }">Cocktails par Catégorie</router-link>
+          <router-link
+            :to="{
+              name: 'cocktailCategory',
+              // params: { ingredient: 'VotreIngredient' },
+            }"
+            >Cocktails par Catégorie</router-link
+          >
         </li>
       </ul>
     </div>
     <div class="titre">
-      <h1>Fren-Cocktail</h1>
+      <h1>Fren Cocktail</h1>
     </div>
     <div class="logo">
       <img src="../assets/logoCocktail.png" alt="logo" />
@@ -37,7 +43,7 @@ export default {
   components: {},
   data() {
     return {
-      isMenuOpen: false
+      isMenuOpen: false,
     };
   },
   methods: {
@@ -57,16 +63,19 @@ export default {
   color: #2c3e50;
 
   header {
-    background-color: #9fbc79;
+    background: linear-gradient(to left, #e6b800, #7dd4e8, #31e0a9);
     color: white;
     padding: 10px;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
+    // position: sticky;
+    // top: 0;
+    // height: 100px;
 
     .logo img {
-      height: 150px;
-      width: 150px;
+      height: 165px;
+      width: 190px;
     }
 
     nav ul {
@@ -81,12 +90,21 @@ export default {
     }
   }
 
+  h1 {
+    font-size: 30px;
+    line-height: 52px;
+    text-align: center;
+    font-family: "Quicksand";
+    color: #0f0f0f;
+  }
+
   .menu {
     display: none;
     transition: all 0.3s ease;
 
     &.open {
       display: block;
+      cursor: pointer;
     }
   }
 

@@ -8,7 +8,7 @@
       placeholder="Votre recherche ici....."
     />
     <button @click.prevent="performSearch" class="SearchBar-button">
-      Search
+      Recherche
     </button>
   </div>
 
@@ -113,10 +113,6 @@ export default {
 };
 </script>
 <style scoped lang="scss">
-.home {
-  height: px;
-}
-
 p {
   color: green;
   font-size: 30px;
@@ -127,31 +123,37 @@ p {
   height: 800px;
   display: flex;
   flex-wrap: wrap;
+  justify-content: space-between;
 }
-
 .drinks img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+}
+.resultats-cocktails img {
+  background-color: red;
+  border-radius: 10px;
 }
 
 .active {
   margin-bottom: 50px;
 }
 
-.carousel__item {
-  width: 200px;
-  height: 200px;
+.carousel__item img {
+  width: 250px;
+  height: 250px;
+  border-radius: 10px;
 }
-
 .search-container {
   display: flex;
   margin: 20px;
-  width: 50%;
+  width: 20%;
 }
-
+.search-bar {
+  margin-bottom: 40px;
+}
 input[type="text"] {
-  width: 70%;
+  width: 30%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px 0 0 5px;
@@ -164,9 +166,19 @@ button {
   border-radius: 0 5px 5px 0;
   color: white;
   cursor: pointer;
+  font: 1rem "Fira Sans", sans-serif;
 }
 .searchImg {
   width: 250px;
+  border-radius: 10px;
+  transition: transform 0.1s;
+}
+.searchImg:hover {
+  transform: scale(1.1);
+}
+.titleCock {
+  background-color: red;
+  
 }
 .detailsSearch {
   display: flex;

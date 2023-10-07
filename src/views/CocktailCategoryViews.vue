@@ -3,11 +3,12 @@
   <div>
     <CocktailCategory @categoryClick="showCategoryDetails" />
     <CategoryDetails :categoryName="selectedCategory" />
-    <router-link :to="{ name: 'results', params: { categoryName: selectedCategory } }" class="btn">
-  Voir les résultats
-</router-link>
-
-
+    <router-link
+      :to="{ name: 'results', params: { categoryName: selectedCategory } }"
+      class="btn"
+    >
+      Voir les résultats
+    </router-link>
   </div>
 </template>
 

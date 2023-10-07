@@ -79,8 +79,26 @@ export default {
 </script>
 
 <style scoped lang="scss">
+div h1 {
+  font-size: 1.8rem;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #31e0a9;
+}
+div ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
 div ul li {
   list-style-type: none;
-  // background-color: red;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  border-bottom: 1px solid #000;
+  padding: 0 2px;
+  cursor: pointer;
 }
 </style>
