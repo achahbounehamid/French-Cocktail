@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>Liste des Catégories de Cocktails</h1>
-    <ul>
+    <ul class="liste-categorie">
       <li v-for="category in categories" :key="category">
         <a href="#" @click.prevent="selectCategory(category)">{{ category }}</a>
       </li>
@@ -56,7 +56,23 @@ export default {
 </script>
 
 <style scoped lang="scss">
+div h1 {
+  font-size: 1.8rem;
+  font-style: italic;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #31e0a9;
+}
+.liste-categorie {
+  height: 690px;
+}
 div ul li {
   list-style-type: none;
+  margin-bottom: 20px;
+  font-size: 30px;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding: 0 2px;
+  cursor: pointer;
 }
 </style>

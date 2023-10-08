@@ -52,6 +52,7 @@ h1 {
   margin-bottom: 40px;
   color: #31e0a9;
 }
+
 ul {
   display: flex;
   flex-wrap: wrap;
@@ -61,13 +62,33 @@ ul {
 div ul li {
   list-style-type: none;
 }
+
 ul li img {
   width: 250px;
   height: 250px;
   border-radius: 10px;
   transition: transform 0.1s;
 }
+
 ul li img:hover {
   transform: scale(1.1);
+}
+
+@media screen and (max-width: 550px) {
+  ul {
+    display: flex;
+    justify-content: center;
+  }
+
+  ul li img {
+    width: 239px;
+    height: 205px;
+    border-radius: 10px;
+    transition: transform 0.1s;
+  }
+
+  ul li img:hover {
+    transform: scale(1.1);
+  }
 }
 </style>

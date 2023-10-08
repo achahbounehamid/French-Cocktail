@@ -11,7 +11,6 @@
       Recherche
     </button>
   </div>
-
   <div class="responseSearch" v-if="searchResults.length > 0">
     <ul class="detailsSearch">
       <li
@@ -47,12 +46,24 @@
       :idDrink="cocktail.idDrink"
     />
   </div>
+
   <div class="active">
-    <Carousel :items-to-show="3" :wrap-around="true">
-      <Slide v-for="(cocktail, index) in cocktails.slice(0, 8)" :key="index">
-        <div class="carousel__item">
-          <img :src="cocktail.strDrinkThumb" :alt="cocktail.strDrink" />
-        </div>
+    <Carousel :autoplay="2000" :wrap-around="true" :breakpoints="breakpoints">
+      <Slide v-for="cocktail in cocktails" :key="cocktail.idDrink">
+        <figure class="custom-slide">
+          <router-link
+            v-if="cocktail.idDrink"
+            :to="{
+              name: 'cocktailDetails',
+              params: { idDrink: cocktail.idDrink },
+            }"
+          >
+            <img :src="cocktail.strDrinkThumb" :alt="cocktail.strDrink" />
+          </router-link>
+          <figcaption>
+            <h3>{{ cocktail.strDrink }}</h3>
+          </figcaption>
+        </figure>
       </Slide>
       <template #addons>
         <Navigation />
@@ -67,7 +78,6 @@ import { searchCocktailsByName } from "@/services/ApiCocktailDB.js";
 import { defineComponent } from "vue";
 import { Carousel, Navigation, Slide } from "vue3-carousel";
 import "vue3-carousel/dist/carousel.css";
-
 export default {
   name: "HomePage",
   components: defineComponent({
@@ -81,6 +91,32 @@ export default {
       searchText: "",
       searchResults: [],
       cocktails: [],
+      settings: {
+        itemsToShow: 1,
+        snapAlign: "center",
+      },
+      breakpoints: {
+        530: {
+          itemsToShow: 1,
+          snapAlign: "center",
+        },
+        550: {
+          itemsToShow: 1,
+          snapAlign: "center",
+        },
+        650: {
+          itemsToShow: 2,
+          snapAlign: "center",
+        },
+        800: {
+          itemsToShow: 3,
+          snapAlign: "center",
+        },
+        1200: {
+          itemsToShow: 4,
+          snapAlign: "start",
+        },
+      },
     };
   },
   methods: {
@@ -117,7 +153,6 @@ p {
   color: green;
   font-size: 30px;
 }
-
 .drinks {
   width: 100%;
   height: 800px;
@@ -130,19 +165,18 @@ p {
   flex-wrap: wrap;
   justify-content: space-between;
 }
-.resultats-cocktails img {
-  background-color: red;
-  border-radius: 10px;
-}
-
 .active {
-  margin-bottom: 50px;
-}
-
-.carousel__item img {
-  width: 250px;
-  height: 250px;
+  text-align: center;
+  padding: 20px;
+  background-color: #fff;
   border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+.active img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  /* Coins arrondis des images */
 }
 .search-container {
   display: flex;
@@ -150,15 +184,15 @@ p {
   width: 20%;
 }
 .search-bar {
-  margin-bottom: 40px;
+  margin: 50px;
 }
+
 input[type="text"] {
   width: 30%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px 0 0 5px;
 }
-
 button {
   padding: 10px 15px;
   background-color: #007bff;
@@ -173,16 +207,33 @@ button {
   border-radius: 10px;
   transition: transform 0.1s;
 }
+
 .searchImg:hover {
   transform: scale(1.1);
-}
-.titleCock {
-  background-color: red;
-  
 }
 .detailsSearch {
   display: flex;
   flex-wrap: wrap;
   list-style-type: none;
+}
+.titleCock {
+  font-family: "Quicksand";
+  color: #404e87;
+  font-size: 25px;
+  text-decoration: none;
+}
+@media screen and (max-width: 1337px) {
+  .drinks {
+    height: auto;
+  }
+}
+@media screen and (max-width: 680px) {
+  .drinks {
+    height: auto;
+    flex-direction: column;
+  }
+  .active img {
+    width: 50%;
+  }
 }
 </style>

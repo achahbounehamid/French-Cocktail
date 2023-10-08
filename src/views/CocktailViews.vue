@@ -24,7 +24,6 @@ export default {
       idDrink: this.$route.params.idDrink, //recuper id dans l'url
     };
   },
-
   mounted() {
     this.oneCocktail(this.idDrink);
   },
@@ -52,6 +51,10 @@ export default {
 };
 </script>
 <style scoped lang="scss">
+.drinks {
+  margin-top: 30px;
+  height: 50vh;
+}
 .drinks img {
   width: 250px;
   height: 250px;
@@ -69,27 +72,39 @@ h3 {
   font-size: 25px;
   font-family: garamond;
   font-weight: 300;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
 }
-
 span {
   color: rgb(10, 10, 10);
   text-transform: uppercase;
   font-family: futura_black;
   font-size: 30px;
 }
-
 .ingredients {
   text-transform: uppercase;
   font-size: 20px;
   line-height: inherit;
   color: black;
 }
-
 ul {
   list-style-type: none;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
   margin: 30px 0 30px 0;
+}
+@media screen and (max-width: 1337px) {
+  .drinks img {
+    width: 200px;
+    height: 200px;
+  }
+  .instructions {
+    flex-direction: column;
+  }
+  ul {
+    flex-direction: column;
+  }
 }
 </style>

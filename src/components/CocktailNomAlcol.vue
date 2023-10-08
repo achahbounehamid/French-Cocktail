@@ -42,11 +42,30 @@ export default {
     font-size: 25px;
     text-decoration: none;
     cursor: pointer;
-    transition: background-color 0.2s; /* Ajout d'une transition pour la couleur de fond au survol */
+    transition: background-color 0.2s;
+    /* Ajout d'une transition pour la couleur de fond au survol */
   }
 
   a:hover {
     background-color: gold;
+  }
+}
+
+@media screen and (max-width: 680px) {
+  .cocktail-card {
+    figure {
+      img {
+        width: 200px;
+        height: 200px;
+      }
+    }
+  }
+  a {
+    font-size: 16px;
+  }
+  .active img {
+    width: 200px;
+    height: 200px;
   }
 }
 </style>

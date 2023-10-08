@@ -32,7 +32,9 @@
       <h1>Fren Cocktail</h1>
     </div>
     <div class="logo">
-      <img src="../assets/logoCocktail.png" alt="logo" />
+      <router-link to="/"
+        ><img src="../assets/logoCocktail.png" alt="logo"
+      /></router-link>
     </div>
   </header>
 </template>
@@ -69,10 +71,6 @@ export default {
     display: flex;
     justify-content: space-evenly;
     align-items: center;
-    // position: sticky;
-    // top: 0;
-    // height: 100px;
-
     .logo img {
       height: 165px;
       width: 190px;
@@ -145,6 +143,17 @@ export default {
   .menu a {
     text-decoration: none;
     font-size: 18px;
+  }
+  @media screen and (max-width: 680px) {
+    h1 {
+      display: none;
+    }
+    header {
+      .logo img {
+        height: 100px;
+        width: 100px;
+      }
+    }
   }
 }
 </style>

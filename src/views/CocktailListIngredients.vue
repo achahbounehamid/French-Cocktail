@@ -86,11 +86,14 @@ div h1 {
   margin-bottom: 40px;
   color: #31e0a9;
 }
+
 div ul {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  margin-right: 50px;
 }
+
 div ul li {
   list-style-type: none;
   margin-bottom: 20px;
@@ -100,5 +103,15 @@ div ul li {
   border-bottom: 1px solid #000;
   padding: 0 2px;
   cursor: pointer;
+}
+
+@media screen and (max-width: 1337px) {
+  div h1 {
+    font-size: 1.5rem;
+  }
+
+  div ul li {
+    font-size: 18px;
+  }
 }
 </style>

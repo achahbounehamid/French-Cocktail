@@ -43,8 +43,4 @@ export default {
   },
 };
 </script>
-<style scoped lang="scss">
-div h1 {
-  background-color: red;
-}
-</style>
+<style scoped lang="scss"></style>

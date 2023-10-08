@@ -1,14 +1,13 @@
-<!-- CocktailCategoryViews.vue -->
 <template>
   <div>
     <CocktailCategory @categoryClick="showCategoryDetails" />
     <CategoryDetails :categoryName="selectedCategory" />
-    <router-link
+    <!-- <router-link
       :to="{ name: 'results', params: { categoryName: selectedCategory } }"
       class="btn"
     >
       Voir les résultats
-    </router-link>
+    </router-link> -->
   </div>
 </template>
 
@@ -40,3 +39,4 @@ export default {
   },
 };
 </script>
+<style scoped lang="scss"></style>
